@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <img src="image2.png" alt="Padlock" style="width:300px;height:300px;">
+    <p id ="output">
+
+    </p>
+    <script>
+        let a=[6,8,2]; //one digit is right and in its place
+        let b=[6,1,4]; //one digit is right and in wrong place 
+        let c=[2,0,6]; //two digits are right and in wrong place
+        let d=[7,3,8]; //all digits are in wrong place
+        let e=[3,8,0]; //one digit is right and in wrong place
+
+        // let a=[2,9,1]; //one digit is right and in its place
+        // let b=[2,4,5]; //one digit is right and in wrong place 
+        // let c=[4,6,3]; //two digits are right and in wrong place
+        // let d=[5,7,8]; //all digits are in wrong place
+        // let e=[5,6,9]; //one digit is right and in wrong place
+
+
+        // eleminating all wrong digits(7,3,8) from all the array.
+        d.forEach(condition4);
+
+        function condition4(value){
+            for(let i=0;i<3;i++){
+                if(b[i]==value){
+                    b[i]=null;
+                }
+                if(a[i]==value){
+                    a[i]=null;
+                }
+                if(c[i]==value){
+                    c[i]=null;
+                }
+                if(e[i]==value){
+                    e[i]=null;
+                }
+                d[i]=null;
+            }
+        }
+        console.log(a);
+        console.log(b);
+        console.log(c);
+        console.log(d);
+        console.log(e);
+        // first and second condition and if there is same value than it isn't answer so remove itfrom other array
+        for(let i=0;i<3;i++){
+            for(let j=0;j<3;j++){
+                if(a[i]==b[j]){
+                    a[i]=null;
+                    b[i]=null;
+    // remove 6 from 
+                    for(let i = 0; i<3; i++){
+                    if(c[i]==6){
+                    c[i]=null;
+                    }
+                }
+                }
+            }
+        }
+        console.log(c);
+        // according to second
+        const result = [];
+
+        for(let i = 0; i<3; i++){
+            if(a[i]!=null){
+                result[2]=a[i];
+            }
+        }
+        console.log(result)
+
+ // first and last condition and if there is same value than it isn't answer so remove itfrom other array
+        for(let i=0;i<3;i++){
+            for(let j=0;j<3;j++){
+                if(a[i]==e[j]){
+                    a[i]=null;
+                    e[i]=null;
+                }
+            }
+        }
+
+
+        for(let i = 0; i<3; i++){
+            if(b[i]==2){
+                b[i]=null;
+            }
+            if(c[i]==2){
+                c[i]=null;
+            }
+            if(b[i]==2){
+                e[i]=null;
+            }
+        }
+
+//according to question comparing array c and e 
+
+        c.forEach(condition3);
+        function condition3(value){
+            if(value!=null){
+                result[0]=value;
+            }
+        }
+ 
+//according to question there is one correct number but in wrong place so check the vacent index i.e index 1, in index 1 there is value "1 "
+// that's why we can't put 1 in it's place so answer is 4
+b.forEach(condition1);
+        function condition1(value){
+            for(let i=0;i<3;i++){
+                if(c[i]==value){
+                    c[i]=null;
+                    let num1=b.indexOf(value)
+                    b[num1]=null;
+                }
+                if(b[i]!=null){
+                    result[1]=b[i];
+                }
+            }
+        }
+   
+        console.log(a);
+        console.log(b);
+        console.log(c);
+        console.log(e);
+        console.log(result);
+
+        const completeOutput = "Correct Answer of Given Padlock is "+result;
+                    document.getElementById("output").innerHTML = completeOutput;
+    </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <img src="image1.png" alt="Padlock" style="width:200px;height:300px;">
+    <p id ="output">
+
+    </p>
+    <script>
+        let a = [1,4,7]; //one digit is right and in wrong place 
+        let b = [1,8,9]; //one digit is right and in its place
+        let c = [9,6,4]; //two digits are right and in wrong place
+        let d = [5,2,3]; //all digits are in wrong place
+        let e = [2,8,6]; //one digit is right and in wrong place
+
+        // eleminating all wrong digits(5,2,3) from all the array.
+        d.forEach(condition4);
+
+        function condition4(value){
+            for(let i=0;i<3;i++){
+                if(a[i]==value){
+                    a[i]=null;
+                }
+                if(b[i]==value){
+                    b[i]=null;
+                }
+                if(c[i]==value){
+                    c[i]=null;
+                }
+                if(e[i]==value){
+                    e[i]=null;
+                }
+            }
+        }
+                // first and second condition and if same the value isn't answer
+
+        for(let i=0;i<3;i++){
+            for(let j=0;j<3;j++){
+                if(a[i]==b[j]){
+                    a[i]=null;
+                    b[i]=null;
+
+                }
+            }
+        }
+         // second and last condition and if same the value isn't answer
+
+
+        for(let i=0;i<3;i++){
+            for(let j=0;j<3;j++){
+                if(b[i]==e[j]){
+                    b[i]=null;
+                    e[i]=null;
+                }
+            }
+        }
+        const result = [];
+// at 2nd position there is only 9 in 2nd index
+
+        for(let i = 0; i<3; i++){
+            if(b[i]!=null){
+                result[2]=b[i];
+            }
+        }
+// remaining value is assign to its own index
+
+// remove 9 from all array 
+
+        for(let i = 0; i<3; i++){
+            if(c[i]==9){
+                c[i]=null;
+            }
+            if(a[i]==9){
+                e[i]=null;
+            }
+        }
+// adding the array a in for each loop and checking the remaining value with array c
+        a.forEach(condition1);
+        function condition1(value){
+            for(let i=0;i<3;i++){
+                if(c[i]==value){
+                    c[i]=null;
+                }
+               // after removing the same value of array a and c  
+               //add the remaining  value off array a to index 1 of array result
+                if(a[i]!=null){
+                    result[1]=a[i];
+                }
+            }
+        }
+
+        //at last  add the remaning value of at index 0 of array result
+        c.forEach(condition3);
+        function condition3(value){
+            if(value!=null){
+                result[0]=value;
+            }
+        }
+
+        console.log(a);
+        console.log(b);
+        console.log(c);
+        console.log(e);
+        console.log(result);
+
+        const completeOutput = "Correct Answer of Given Padlock is "+result;
+        document.getElementById("output").innerHTML = completeOutput;
+    </script>
+</body>
+</html>
